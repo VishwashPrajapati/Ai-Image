@@ -20,6 +20,8 @@ export class AppComponent {
   activeButton = false;
   buttonname = 'Download';
 
+  API_KEY = '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';
+
   imageURL = 'https://pixsector.com/cache/517d8be6/av5c8336583e291842624.png';
 
   constructor(private http: HttpClient) {
@@ -52,8 +54,7 @@ export class AppComponent {
         {
           headers: {
             'Content-Type': 'application/json',
-            Authorization:
-              'Bearer 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',
+            Authorization: `Bearer ${this.API_KEY}`,
           },
         }
       )
