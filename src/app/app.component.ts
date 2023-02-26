@@ -5,6 +5,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 import surpriseMePrompts from './data';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -19,8 +20,6 @@ export class AppComponent {
   mainForm: FormGroup;
   activeButton = false;
   buttonname = 'Download';
-
-  API_KEY = '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';
 
   imageURL = 'https://pixsector.com/cache/517d8be6/av5c8336583e291842624.png';
 
@@ -54,7 +53,7 @@ export class AppComponent {
         {
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${this.API_KEY}`,
+            Authorization: `Bearer ${environment.API_KEY}`,
           },
         }
       )
