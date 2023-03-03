@@ -5,7 +5,6 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 import surpriseMePrompts from './data';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -21,9 +20,17 @@ export class AppComponent {
   activeButton = false;
   buttonname = 'Download';
 
+  apiKey = '';
+
   imageURL = 'https://pixsector.com/cache/517d8be6/av5c8336583e291842624.png';
 
   constructor(private http: HttpClient) {
+    this.http
+      .get('https://red-coral-tux.cyclic.app/items/data')
+      .subscribe((res: any) => {
+        this.apiKey = res.data[0].name;
+      });
+
     this.mainForm = new FormGroup({
       prompt: new FormControl(''),
     });
@@ -53,7 +60,7 @@ export class AppComponent {
         {
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${environment.API_KEY}`,
+            Authorization: `Bearer ${this.apiKey}`,
           },
         }
       )
